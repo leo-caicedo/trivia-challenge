@@ -3,6 +3,7 @@ const morgan = require('morgan');
 
 // required routes
 const questionsRoutes = require('./quizzes/routes/questions.routes.js');
+const quizzesRoutes = require('./quizzes/routes/quizzes.routes.js');
 
 const createApp = () => {
   const app = express();
@@ -13,6 +14,7 @@ const createApp = () => {
 
   // routes
   app.use('/api/questions', questionsRoutes);
+  app.use('/api/quizzes', quizzesRoutes);
 
   return app
 }
