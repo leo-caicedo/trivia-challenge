@@ -1,0 +1,25 @@
+{
+  "name": "trivia-challenge",
+  "version": "1.0.0",
+  "description": "Back Coding Challenge",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leo-caicedo/trivia-challenge.git"
+  },
+  "author": "Leonardo Caicedo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leo-caicedo/trivia-challenge/issues"
+  },
+  "homepage": "https://github.com/leo-caicedo/trivia-challenge#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
