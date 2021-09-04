@@ -8,6 +8,7 @@ const resultSchema = new Schema({
     quiz_id: {
         type: Schema.Types.ObjectId,
         ref: 'Quiz',
+        required: true,
     },
     responses : [
         {
