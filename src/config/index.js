@@ -11,4 +11,4 @@ const config = {
   dbConnection: process.env.MONGO_CONNECTION,
 };
 
-module.exports = config;
+module.exports = { config };
