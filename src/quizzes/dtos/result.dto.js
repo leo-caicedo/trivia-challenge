@@ -12,14 +12,9 @@ const resultDto = [
     .exists({ checkFalsy: false })
     .withMessage('Quiz_id is required'),
   // responses
-  body('responses.question_id')
+  body('responses')
     .exists({ checkFalsy: false })
-    .withMessage('Question_id is required'),
-  body('responses.my_response')
-    .exists({ checkFalsy: false })
-    .withMessage('my_response is required')
-    .isBoolean()
-    .withMessage('my_response must be a boolean')
+    .withMessage('Responses is required'),
 ]
 
 module.exports = resultDto
