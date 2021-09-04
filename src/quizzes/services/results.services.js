@@ -6,8 +6,8 @@ class ResultsServices {
   async getResults(req, res, next) {
     try {
       const results = await Result.find({})
-	.populate('quiz_id', { result: 0 })
-        .populate('responses.question_id', { _id: 0 })
+	.populate('quiz_id', { results: 0 })
+        .populate('responses.question_id')
         .exec();
       res.json(results);
     } catch (err) {
@@ -21,7 +21,7 @@ class ResultsServices {
 
     try {
       const result = await Result.findById(id)
-        .populate('quiz_id')
+        .populate('quiz_id', { results: 0 })
         .populate('responses.question_id')
         .exec();
       res.json(result)

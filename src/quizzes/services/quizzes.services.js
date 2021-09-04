@@ -17,7 +17,7 @@ class QuizzesServices {
     const { id } = req.params;
 
     try {
-      const quiz = await Quiz.findById(id);
+      const quiz = await Quiz.findById(id).populate('results');
       res.json(quiz)
     } catch(err) {
       next(err);
