@@ -6,7 +6,6 @@ const quizSchema = new Schema(
         type: String,
         required: true
     },
-    response_code: Number,
     results: [
         {
         type: Schema.Types.ObjectId,
