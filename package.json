@@ -4,7 +4,8 @@
   "description": "Back Coding Challenge",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "NODE_ENV=dev nodemon src/index.js",
+    "start": "NODE_ENV=production node src/index,js"
   },
   "repository": {
     "type": "git",
