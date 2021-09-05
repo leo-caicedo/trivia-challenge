@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 // required routes
 const questionsRoutes = require('./quizzes/routes/questions.routes.js');
@@ -10,6 +11,7 @@ const createApp = () => {
   const app = express();
 
   // middleware
+  app.use(cors());
   app.use(express.json());
   app.use(morgan('dev'));
 
