@@ -1,0 +1,528 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "REST API to generate quizzes with random questions and storage of user responses.",
+    "version": "1.0.0",
+    "title": "Trivia challenge APi"
+  },
+  "host": "trivia-challenge-api.herokuapp.com",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "quizzes",
+      "description": "Endpoints for CRUD operations of quizzes"
+    },
+    {
+      "name": "results",
+      "description": "Endpoints for CRUD operations of results"
+    },
+    {
+      "name": "questions",
+      "description": "Endpoints for CRUD operations of questions"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/quizzes": {
+      "get": {
+        "tags": [
+          "quizzes"
+        ],
+        "summary": "List all quizzes",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Quiz"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "quizzes"
+        ],
+        "summary": "Create a new quiz",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Quiz data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Quiz"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/quizzes/{id}": {
+      "get": {
+        "tags": [
+          "quizzes"
+        ],
+        "summary": "Find quiz by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of quiz to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Quiz"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "quizzes"
+        ],
+        "summary": "Update an existing quiz",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of quiz to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Quiz data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Quiz"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "quizzes"
+        ],
+        "summary": "Deletes a quiz",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Not Content"
+          }
+        }
+      }
+    },
+    "/results": {
+      "get": {
+        "tags": [
+          "results"
+        ],
+        "summary": "List all results",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Result"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "results"
+        ],
+        "summary": "Create a new result",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Result data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/results/{id}": {
+      "get": {
+        "tags": [
+          "results"
+        ],
+        "summary": "Find result by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of result to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "results"
+        ],
+        "summary": "Update an existing results",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of result to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Result data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "results"
+        ],
+        "summary": "Deletes a result",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Not Content"
+          }
+        }
+      }
+    },
+    "/questions": {
+      "get": {
+        "tags": [
+          "questions"
+        ],
+        "summary": "List all questions",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Question"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "questions"
+        ],
+        "summary": "Create a new question",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Question data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/question/{id}": {
+      "get": {
+        "tags": [
+          "questions"
+        ],
+        "summary": "Find question by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of question to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "questions"
+        ],
+        "summary": "Update an existing question",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of question to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Question data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "questions"
+        ],
+        "summary": "Deletes a question",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Not Content"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Question": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "6133f7b205a4ef2e0a5a4ca5"
+        },
+        "question": {
+          "type": "string",
+          "example": "DHCP stands for Dynamic Host Configuration Port."
+        },
+        "difficulty": {
+          "type": "string",
+          "example": "hard",
+          "default": "medium"
+        },
+        "category": {
+          "type": "string",
+          "example": "Science: Computers"
+        },
+        "correct_answer": {
+          "type": "boolean",
+          "example": false
+        },
+        "incorrect_answer": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    },
+    "Quiz": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "613420cef298f97da4b09257"
+        },
+        "name": {
+          "type": "string",
+          "example": "Quiz 1"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "example": "[questions...]"
+        }
+      }
+    },
+    "Result": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "6133f0c9a5629a7e132eadf6"
+        },
+        "email": {
+          "type": "string",
+          "example": "test@test.com"
+        },
+        "quiz_id": {
+          "type": "string",
+          "example": "6133ec7302ddf753491886b5"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "example": "[results...]"
+        }
+      }
+    }
+  }
+}

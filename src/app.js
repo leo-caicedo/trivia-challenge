@@ -1,8 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const swaggerUI = require('swagger-ui-express');
 
-const path = require('path');
+const swaggerDoc = require('./swagger.json');
 // required routes
 const questionsRoutes = require('./quizzes/routes/questions.routes.js');
 const quizzesRoutes = require('./quizzes/routes/quizzes.routes.js');
@@ -20,11 +21,8 @@ const createApp = () => {
   app.use('/api/questions', questionsRoutes);
   app.use('/api/quizzes', quizzesRoutes);
   app.use('/api/results', resultsRoutes);
-
-  // home page
-  app.get('/home', (req, res) => {
-    res.render('home');
-  })
+  // documentation
+  app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
   // redirect
   app.get('/', (req, res) => {
