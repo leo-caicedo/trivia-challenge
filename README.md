@@ -1,7 +1,7 @@
 # Deploy
 You can find the API here 👉 https://trivia-challenge-api.herokuapp.com/
 # Documentation
-You can see the documentation in https://trivia-challenge-api.herokuapp.com/api/quizzes/api-docs
+You can see the documentation in https://trivia-challenge-api.herokuapp.com/api-docs
 # Trivia challenge
 ## _Back Coding Challenge_
 REST API to generate quizzes with random questions and storage of user responses.
