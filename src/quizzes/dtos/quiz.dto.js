@@ -7,10 +7,6 @@ const quizDto = [
     .withMessage('Quiz name is required')
     .isString()
     .withMessage('Quiz name must be a string'),
-  // response_code
-  body('response_code')
-    .isInt()
-    .withMessage('Response code must be a integer'),
 ]
 
 module.exports = quizDto;

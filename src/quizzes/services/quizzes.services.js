@@ -1,5 +1,6 @@
 // models
 const Quiz = require('../models/Quiz.js');
+const Question = require('../models/Question.js');
 
 class QuizzesServices {
   // list quizzes
@@ -26,12 +27,23 @@ class QuizzesServices {
 
   // create quiz
   async createQuiz(req, res, next) {
-    const { body: newQuiz } = req;
+    const { name } = req.body;
+
+    // create random questions
+    const questionsList = await Question.find({});
+    const questionIds = questionsList.map((question) => question._id);
+    questionIds.sort(() => Math.random() > 0.5 ? 1 : -1);
+    const randomQuestions = questionIds.slice(0, 10); // take ten questions
+
 
     try {
-      const quizCreated = new Quiz(newQuiz);
+      const quizCreated = new Quiz({
+	name,
+	results: randomQuestions,
+      });
       await quizCreated.save();
-      res.status(201).json(quizCreated);
+      const quiz = await Quiz.findById(quizCreated._id).populate('results');
+      res.status(201).json(quiz);
     } catch(err) {
       next(err)
     }
