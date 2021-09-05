@@ -1,7 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const hbs = require('express-handlebars');
 
 const path = require('path');
 // required routes
@@ -17,17 +16,6 @@ const createApp = () => {
   app.use(express.json());
   app.use(morgan('dev'));
 
-  // settings
-  app.set("views", path.join(__dirname, "views"));
-  app.engine(
-    ".hbs",
-    hbs({
-      defaultLayout: "main",
-      extname: ".hbs",
-    })
-  );
-  app.set("view engine", ".hbs");
-
   // routes
   app.use('/api/questions', questionsRoutes);
   app.use('/api/quizzes', quizzesRoutes);
@@ -40,7 +28,7 @@ const createApp = () => {
 
   // redirect
   app.get('/', (req, res) => {
-    res.redirect('/home');
+    res.redirect('/api/quizzes');
   });
 
   return app
